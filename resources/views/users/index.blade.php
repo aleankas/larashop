@@ -8,8 +8,23 @@
     {{session('status')}}
   </div>
 @endif
-<a href="{{route('users.create')}}" class="btn btn-md btn-primary">Add New User</a>
-<br><br>
+
+<br>
+<div class="row">
+	<div class="col-md-6">
+		<a href="{{route('users.create')}}" class="btn btn-md btn-primary">Add New User</a>
+	</div>
+	<div class="col-md-6 text-right">
+		<form action="{{route('users.index')}}">
+			<div class="input-group mb-3">
+				<input value="{{Request::get('keyword')}}" name="keyword" class="form-control col-md-10" type="text" placeholder="Filter berdasarkan email"/>
+				<div class="input-group-append">
+					<input type="submit" value="Filter" class="btn btn-primary">
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
 <table class="table table-bordered">
 	<thead>
 		<tr>
