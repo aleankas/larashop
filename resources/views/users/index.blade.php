@@ -2,6 +2,14 @@
 @section("title") Users list @endsection
 @section("content")
 <h1>List User</h1>
+<!-- validation message -->
+@if(session('status'))
+  <div class="alert alert-success">
+    {{session('status')}}
+  </div>
+@endif
+<a href="{{route('users.create')}}" class="btn btn-md btn-primary">Add New User</a>
+<br><br>
 <table class="table table-bordered">
 	<thead>
 		<tr>
@@ -27,6 +35,11 @@
 			</td>
 			<td>
 				<a class="btn btn-info text-white btn-sm" href="{{route('users.edit', [$user->id])}}">Edit</a>
+				<form onsubmit="return confirm('Delete this user permanently?')" class="d-inline" action="{{route('users.destroy', [$user->id])}}" method="POST">
+					@csrf
+				    <input type="hidden" name="_method" value="DELETE">
+				    <input type="submit" value="Delete" class="btn btn-danger btn-sm">
+				</form>
 			</td>
 		</tr>
 		@endforeach
