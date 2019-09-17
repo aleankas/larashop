@@ -72,5 +72,10 @@
 		</tr>
 		@endforeach
 	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="10">{{ $users->links() }}</td>
+		</tr>
+	</tfoot>
 </table>
 @endsection

@@ -14,21 +14,21 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users          = \App\User::paginate(10);
+        $users          = \App\User::paginate(5);
         $filterKeyword  = $request->get('keyword');
         $status         = $request->get('status');
         
         if($filterKeyword){
            if($status){
-                $users = \App\User::where('email', 'LIKE', "%$filterKeyword%")->where('status', $status)->paginate(10);
+                $users = \App\User::where('email', 'LIKE', "%$filterKeyword%")->where('status', $status)->paginate(5);
             } else {
-                $users = \App\User::where('email', 'LIKE', "%$filterKeyword%")->paginate(10);
+                $users = \App\User::where('email', 'LIKE', "%$filterKeyword%")->paginate(5);
             }
         }else{
             if($status){
-                $users = \App\User::where('status', $status)->paginate(10);
+                $users = \App\User::where('status', $status)->paginate(5);
             } else {
-                $users = \App\User::paginate(10);
+                $users = \App\User::paginate(5);
             }
         }
         return view('users.index', ['users' => $users]);
@@ -69,7 +69,7 @@ class UserController extends Controller
             $new_user->avatar = 'no-img';
         }
         $new_user->save();
-        return redirect()->route('users.create')->with('status', 'User successfully created.');
+        return redirect()->route('users.index')->with('status', 'User successfully created.');
     }
 
     /**
