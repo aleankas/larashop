@@ -1,6 +1,7 @@
 @extends("layouts.global")
 @section("title") Users list @endsection
 @section("content")
+<h1>List User</h1>
 <table class="table table-bordered">
 	<thead>
 		<tr>

@@ -2,6 +2,7 @@
 @section("title") Create User @endsection
 @section("content")
 <div class="col-md-8">
+	<h1>Create User</h1>
 	
 	@if(session('status'))
   <div class="alert alert-success">
