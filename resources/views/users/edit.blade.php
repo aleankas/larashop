@@ -49,7 +49,7 @@
 
     <label for="address">Address</label>
     <br>
-    <textarea type="text" name="address" class="form-control" value="{{$user->address}}"></textarea>
+    <textarea type="text" name="address" class="form-control"> {{ $user->address }}</textarea>
     <br>
 		
 		<label for="avatar">Avatar image</label>
