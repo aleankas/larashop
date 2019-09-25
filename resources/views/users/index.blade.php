@@ -74,7 +74,8 @@
 	</tbody>
 	<tfoot>
 		<tr>
-			<td colspan="10">{{ $users->links() }}</td>
+			<!-- pagination -->
+			<td colspan="10">{{ $users->appends(Request::all())->links() }}</td>
 		</tr>
 	</tfoot>
 </table>
