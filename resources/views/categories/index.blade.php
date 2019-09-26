@@ -16,16 +16,9 @@
 		  <div class="col-md-6">
 		    <form action="{{route('categories.index')}}">
 		      <div class="input-group">
-		          <input
-		            type="text"
-		            class="form-control"
-		            placeholder="Filter by category name"
-		            name="name">
+		          <input type="text" class="form-control" placeholder="Filter by category name" name="name">
 		          <div class="input-group-append">
-		            <input
-		              type="submit"
-		              value="Filter"
-		              class="btn btn-primary">
+		            <input type="submit" value="Filter" class="btn btn-primary">
 		          </div>
 		      </div>
 		    </form>
@@ -33,7 +26,7 @@
 		</div>
 
 		<hr class="my-3">
-		
+
 		<!-- table category list -->
 		<table class="table table-bordered table-stripped">
 			<thead>
@@ -59,7 +52,7 @@
 						@endif
 					</td>
 					<td>
-						[TODO: actions]
+						<a href="{{route('categories.edit', [$category->id])}}" class="btn btn-info btn-sm">Edit</a>
 					</td>
 				</tr>
 				@endforeach

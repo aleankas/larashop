@@ -11,9 +11,14 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $categories = \App\Category::paginate(10);
+
+        $filterKeyword = $request->get('name');
+        if ($filterKeyword) {
+            $categories = \App\Category::where("name","LIKE","%$filterKeyword%")->paginate(10);
+        }
         return view('categories.index', ['categories' => $categories]);
     }
 
@@ -69,7 +74,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category_to_edit = \App\Category::findOrFail($id);
+        return view('categories.edit', ['category' => $category_to_edit]);
     }
 
     /**
@@ -81,7 +87,26 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $name = $request->get('name');
+        $slug = $request->get('slug');
+
+        $category = \App\Category::findOrFail($id);
+        
+        $category->name = $name;
+        $category->slug = $slug;
+    
+        if ($request->file('image')) {
+            if($category->image && file_exists(storage_path('app/public/' .$category->image))){
+                \Storage::delete('public/' . $category->name);
+            }
+            $new_image = $request->file('image')->store('category_images','public');
+            $category->image = $new_image;
+        }
+
+        $category->updated_by = \Auth::user()->id;
+        $category->slug = \Str::slug($name);
+        $category->save();
+        return redirect()->route('categories.index', [$id])->with('status','Category successfully updated');
     }
 
     /**
