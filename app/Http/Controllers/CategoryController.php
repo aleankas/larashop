@@ -13,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = \App\User::paginate(10);
+        return view('categories.index', ['categories' => $categories]);
     }
 
     /**
