@@ -52,6 +52,11 @@
 					<td>
 						<a href="{{route('categories.edit', [$category->id])}}" class="btn btn-info btn-sm">Edit</a>
 						<a href="{{route('categories.show', [$category->id])}}" class="btn btn-primary"> Show </a>
+						<form class="d-inline" action="{{route('categories.destroy', [$category->id])}}" method="POST" onsubmit="return confirm('Move category to trash?')" >
+							@csrf
+						  <input type="hidden" value="DELETE" name="_method">
+						  <input type="submit" class="btn btn-danger btn-sm" value="Trash">
+						</form>
 					</td>
 				</tr>
 				@endforeach
