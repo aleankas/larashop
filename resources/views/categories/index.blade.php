@@ -44,15 +44,14 @@
 					<td>{{$category->slug}}</td>
 					<td>
 						@if($category->image)
-						<img
-						src="{{asset('storage/' . $category->image)}}"
-						width="48px"/>
-						@else
-						No image
+						<img src="{{asset('storage/' . $category->image)}}" width="48px"/>
+							@else
+								No image
 						@endif
 					</td>
 					<td>
 						<a href="{{route('categories.edit', [$category->id])}}" class="btn btn-info btn-sm">Edit</a>
+						<a href="{{route('categories.show', [$category->id])}}" class="btn btn-primary"> Show </a>
 					</td>
 				</tr>
 				@endforeach
