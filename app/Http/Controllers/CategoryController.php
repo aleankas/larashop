@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = \App\User::paginate(10);
+        $categories = \App\Category::paginate(10);
         return view('categories.index', ['categories' => $categories]);
     }
 
@@ -47,7 +47,7 @@ class CategoryController extends Controller
         $new_category->created_by = \Auth::user()->id;
         $new_category->slug = \Str::slug($name, '-');
         $new_category->save();
-        return redirect()->route('categories.create')->with('status','Category successfully created');
+        return redirect()->route('categories.index')->with('status','Category successfully created');
     }
 
     /**
