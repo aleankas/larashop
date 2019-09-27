@@ -53,10 +53,10 @@
 					<td>{{$category->name}}</td>
 					<td>{{$category->slug}}</td>
 					<td>
-						@if($category->image)
+						@if($category->image != 'no-img')
 						<img src="{{asset('storage/' . $category->image)}}" width="48px"/>
 							@else
-								No image
+								N/A
 						@endif
 					</td>
 					<td>

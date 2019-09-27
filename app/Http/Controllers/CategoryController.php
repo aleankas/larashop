@@ -48,6 +48,8 @@ class CategoryController extends Controller
         if($request->file('image')){
             $image_path = $request->file('image')->store('category_images', 'public');
             $new_category->image = $image_path;
+        }else{
+            $new_category->image = 'no-img';
         }
 
         $new_category->created_by = \Auth::user()->id;
@@ -128,4 +130,43 @@ class CategoryController extends Controller
         $deleted_category = \App\Category::onlyTrashed()->paginate(10);
         return view('categories.trash', ['categories' => $deleted_category]);
     }
+
+    public function restore($id){
+        $category = \App\Category::withTrashed()->findOrFail($id);
+
+        if($category->trashed()){
+            $category->restore();
+        } else {
+            return redirect()->route('categories.index')->with('status', 'Category is not in trash');
+        }
+        
+        return redirect()->route('categories.index')->with('status', 'Category successfully restored');
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

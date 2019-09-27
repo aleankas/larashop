@@ -5,17 +5,9 @@
 	<div class="col-md-6">
 		<form action="{{route('categories.index')}}">
 			<div class="input-group">
-				<input
-				type="text"
-				class="form-control"
-				placeholder="Filter by category name"
-				value="{{Request::get('name')}}"
-				name="name">
+				<input type="text" class="form-control" placeholder="Filter by category name" value="{{Request::get('name')}}" name="name">
 				<div class="input-group-append">
-					<input
-					type="submit"
-					value="Filter"
-					class="btn btn-primary">
+					<input type="submit" value="Filter" class="btn btn-primary">
 				</div>
 			</div>
 		</form>
@@ -30,42 +22,45 @@
 				<a class="nav-link active" href="
 				{{route('categories.trash')}}">Trash</a>
 			</li>
-		</ul> </div>
+		</ul>
 	</div>
-	<hr class="my-3">
-	<div class="row">
-		<div class="col-md-12">
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>Nama</th>
-						<th>Slug</th>
-						<th>Image</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach($categories as $category)
-					<tr>
-						<td>{{$category->name}}</td>
-						<td>{{$category->slug}}</td>
-						<td>
-							@if($category->image)
-							<img src="{{asset('storage/' . $category->image)}}"
-							width="48px"/>
-							@endif
-						</td> <td>
-						[TODO: actions]
-					</td> </tr>
-					@endforeach
-				</tbody>
-				<tfoot>
+</div>
+<hr class="my-3">
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-bordered">
+			<thead>
 				<tr>
-					<td colSpan="10">
-						{{$categories->appends(Request::all())->links()}}
-					</td> </tr>
-					</tfoot>
-				</table>
-			</div>
-		</div>
-		@endsection
+					<th>Nama</th>
+					<th>Slug</th>
+					<th>Image</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach($categories as $category)
+				<tr>
+					<td>{{$category->name}}</td>
+					<td>{{$category->slug}}</td>
+					<td>
+						@if($category->image)
+						<img src="{{asset('storage/' . $category->image)}}" width="48px"/>
+						@endif
+					</td>
+					<td>
+						<a href="{{route('categories.restore', [$category->id])}}" class="btn btn-success">Restore</a>
+					</td>
+				</tr>
+				@endforeach
+			</tbody>
+			<tfoot>
+			<tr>
+				<td colSpan="10">
+					{{$categories->appends(Request::all())->links()}}
+				</td>
+			</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>
+@endsection

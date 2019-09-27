@@ -13,9 +13,12 @@
       <br><br>
 
       <label><b>Category image</b></label><br>
-      @if($category->image)
+      @if($category->image != 'no-img')
 				<img src="{{asset('storage/' . $category->image)}}" width="120px">
+			@else
+			<p>N/A</p>
 			@endif
+
 		</div>
 	</div>
 </div>
