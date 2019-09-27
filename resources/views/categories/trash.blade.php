@@ -34,7 +34,7 @@
 					<th>Nama</th>
 					<th>Slug</th>
 					<th>Image</th>
-					<th>Action</th>
+					<th width="25%">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,6 +49,11 @@
 					</td>
 					<td>
 						<a href="{{route('categories.restore', [$category->id])}}" class="btn btn-success">Restore</a>
+						<form class="d-inline" action="{{route('categories.delete-permanent', [$category->id])}}" method="POST" onsubmit="return confirm('Delete this category permanently?')">
+							@csrf
+						  <input type="hidden" name="_method" value="DELETE"/>
+						  <input type="submit" class="btn btn-danger" value="Delete Permanent"/>
+						</form>
 					</td>
 				</tr>
 				@endforeach
