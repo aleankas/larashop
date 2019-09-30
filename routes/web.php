@@ -23,11 +23,14 @@ Route::match(["GET", "POST"], "/register", function(){
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// users
+// Users
 Route::resource("users", "UserController");
 
-// categories
+// Categories
 Route::get('/categories/trash', 'CategoryController@trash')->name('categories.trash');
 Route::get('/categories/{id}/restore', 'CategoryController@restore')->name('categories.restore');
 Route::delete('/categories/{category}/delete-permanent', 'CategoryController@deletePermanent')->name('categories.delete-permanent');
 Route::resource('categories', 'CategoryController');
+
+// Book Controller
+Route::resource('books', 'BookController');
