@@ -33,17 +33,12 @@
       <input type="text" class="form-control" name="author" id="author" placeholder="Book Author"><br>
 
       <label for="publisher">Publisher</label><br>
-      <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Book publisher"><br>
+      <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Book publisher">
+      <br>
         <label for="Price">Price</label> <br>
         <input type="number" class="form-control" name="price" id="price"placeholder="Book price"><br>
-        <button
-          class="btn btn-primary"
-          name="save_action"
-          value="PUBLISH">Publish</button>
-        <button
-          class="btn btn-secondary"
-          name="save_action"
-          value="DRAFT">Save as draft</button>
+        <button class="btn btn-primary" name="save_action" value="PUBLISH">Publish</button>
+        <button class="btn btn-secondary" name="save_action" value="DRAFT">Save as draft</button>
       </form>
     </div>
 </div>
